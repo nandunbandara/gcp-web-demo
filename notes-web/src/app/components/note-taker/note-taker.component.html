@@ -1,0 +1,10 @@
+<form class="form-container">
+    <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Content</mat-label>
+        <textarea matInput fullWidth placeholder="Your notes here" [(ngModel)]="content" name="content"></textarea>
+    </mat-form-field>
+    <div style="display: flex; align-items: flex-end; justify-content: flex-end; width: 100%;">
+        <button mat-raised-button color="primary" style="margin-right: 1rem;" (click)="createNote()">Create Note</button>
+        <button mat-stroked-button color="accent" (click)="clear()">Clear</button>
+    </div>
+</form>
