@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Subject, Observable} from 'rxjs';
+import {Subject, Observable, pipe, map} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import Note from "../types/note";
+import Note, {INoteDTO} from "../types/note";
 import {environment} from "../../environments/environment";
 import {IAPIHealth} from "../types/health";
 import {IAPIResponse} from "../types/api";
@@ -30,11 +30,12 @@ export class NoteService {
     }
 
     public loadNotes(lastId?: string) {
-        this.http.get<IAPIResponse<Note[]>>(`${environment.apiHost}/api/v1/notes`)
+        this.http.get<IAPIResponse<INoteDTO[]>>(`${environment.apiHost}/api/v1/notes`)
             .subscribe({
-                next: (response: IAPIResponse<Note[]>) => {
+                next: (response: IAPIResponse<INoteDTO[]>) => {
                     if (response.success) {
-                        this._noteSubject.next(response.data);
+                        const notes = response.data.map(n => new Note(n));
+                        this._noteSubject.next(notes);
                     }
                 },
                 error: () => {
