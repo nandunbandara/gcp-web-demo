@@ -1,1 +1,7 @@
-<p *ngFor="let note of notes;">{{note.Content}}</p>
+<mat-card style="width: 50vw; margin-bottom: 1rem;" *ngFor="let note of notes;">
+    <mat-card-header>
+        <mat-card-title>{{note.Content}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>{{note.CreatedAt | date: 'short'}} | Version: {{note.Version}}</mat-card-content>
+</mat-card>
+<button mat-raised-button (click)="loadMore()">Load More</button>

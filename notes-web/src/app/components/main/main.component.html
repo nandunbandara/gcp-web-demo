@@ -2,11 +2,11 @@
   <div style="margin-left: 2rem;">
     <h1>Notes! <small>Demo</small></h1>
   </div>
-  <div style="margin-right: 2rem;" *ngIf="health$ | async as health">
+  <div style="margin-right: 2rem;">
     <div>
-      <button mat-stroked-button color="accent">Check Health</button>
+      <button mat-stroked-button color="accent" (click)="getHealth()">Check Health</button>
     </div>
-    <div style="margin-top: 1rem">
+    <div style="margin-top: 1rem" *ngIf="health$ | async as health">
       <p *ngIf="health" style="margin-bottom: 0;">Healthy!</p>
       <p>API Version: {{health.version}}</p>
     </div>

@@ -29,4 +29,8 @@ export class MainComponent {
         this.health$ = this.noteService.getHealthObservable();
         this.noteService.getHealthStatus();
     }
+
+    public getHealth() {
+        this.noteService.getHealthStatus();
+    }
 }

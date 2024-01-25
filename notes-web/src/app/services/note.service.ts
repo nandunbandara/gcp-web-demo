@@ -30,9 +30,10 @@ export class NoteService {
     }
 
     public loadNotes(lastId?: string) {
-        this.http.get<IAPIResponse<INoteDTO[]>>(`${environment.apiHost}/api/v1/notes`)
+        this.http.get<IAPIResponse<INoteDTO[]>>(`${environment.apiHost}/api/v1/notes?last=${lastId}`)
             .subscribe({
                 next: (response: IAPIResponse<INoteDTO[]>) => {
+                    console.log(response.data);
                     if (response.success) {
                         const notes = response.data.map(n => new Note(n));
                         this._noteSubject.next(notes);

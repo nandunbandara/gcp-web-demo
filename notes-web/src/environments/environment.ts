@@ -1,3 +1,3 @@
 export const environment = {
-  apiHost: 'http://localhost:3000'
+  apiHost: 'https://demo.gdg.nandunbandara.com'
 };
